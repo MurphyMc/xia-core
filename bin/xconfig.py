@@ -166,29 +166,37 @@ def getAradaInterfaces(ignore_interfaces):
 #
 def getLinuxInterfaces(ignore_interfaces):
     # Get the MAC and IP addresses
-    filters = ''
-    if ignore_interfaces != None:
-        filter_array = ignore_interfaces.split(",")
-        for filter in filter_array:
-            filters += 'grep -v %s | ' % filter.strip()
+    if ignore_interfaces is not None:
+        ignore_interfaces = set(ignore_interfaces.split(","))
+    else:
+        ignore_interfaces = set()
 
-    cmdline = subprocess.Popen(
-            "/sbin/ifconfig | %s grep -v fake | grep -A 1 HWaddr | sed 's/ \+/ /g' | sed s/addr://" % (filters),
-            shell=True, stdout=subprocess.PIPE)
+    cmdline = subprocess.Popen("/bin/ip addr show up", shell=True,
+                               stdout=subprocess.PIPE)
     result = cmdline.stdout.read().strip()
 
-    # TODO: eliminate this by making the shell command above smarter
+    def get_key (l, k):
+        try:
+            return l[1 + l.index(k)]
+        except Exception:
+            return None
+
+    ifaces = []
+    for l in result.split("\n"):
+        if l.startswith(" "):
+            ifaces[-1] += l
+        else:
+            ifaces.append(l)
     addrs = []
-    temp_array = result.split("\n")
-    iface, mac, ip = (None, None, None)
-    for i in range(len(temp_array)):
-        if temp_array[i].strip() == '':
-            continue
-        if i % 3 == 0:
-            iface = temp_array[i].split(' ')[0]
-            mac = temp_array[i].split(' ')[4]
-        elif i % 3 == 1:
-            ip = temp_array[i].split(' ')[2]
+    for info in ifaces:
+        info = info.split()
+        assert info[1].endswith(":")
+        iface = info[1][:-1].split("@")[0]
+        mac = get_key(info, "link/ether")
+        ip = get_key(info, "inet")
+        if iface in ignore_interfaces: continue
+        if iface and mac and ip:
+            ip = ip.split("/")[0]
             addrs.append([iface, mac, ip])
 
     return addrs
