@@ -48,7 +48,7 @@ def parse_args():
     parser.add_argument("-r", "--router",
             help="join network then announce it", action="store_true")
     parser.add_argument("-i", "--beacon_interval",
-            help="beacon interval in seconds(float)", type=float, default=0.5)
+            help="beacon interval in seconds(float)", type=float, default=6.3)
     parser.add_argument("--hostname",
             help="click hostname", type=str)
     parser.add_argument("-l", "--loglevel",

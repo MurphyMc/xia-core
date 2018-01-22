@@ -463,7 +463,7 @@ class NetjoinSession(threading.Thread):
             # TODO: Need to get l2_type to announce from a config file
             # TODO: Need to get beacon_interval from a config file
             l2_type = LayerTwoIdentifier.ETHERNET
-            beacon_interval = 0.5
+            beacon_interval = 3.5
 
             # Inform local xrouted that NetJoin is complete
             self.xrouted.send_config(ad, self.controller_dag)

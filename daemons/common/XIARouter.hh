@@ -53,17 +53,17 @@ using namespace std;
 
 
 // Controls how fast LSAs are sent (ms)
-#define L_FREQ_ROUTER     300
-#define L_FREQ_CONTROLLER 300
+#define L_FREQ_ROUTER     5100
+#define L_FREQ_CONTROLLER 5100
 
 // Controls how fast keepalives are sent (ms)
-#define H_FREQ_ROUTER     100
-#define H_FREQ_CONTROLLER 100
-#define H_FREQ_HOST       100
+#define H_FREQ_ROUTER     5100
+#define H_FREQ_CONTROLLER 5100
+#define H_FREQ_HOST       5100
 
 // Expiration times (sec)
-#define NEIGHBOR_EXPIRE_TIME 10
-#define ROUTE_EXPIRE_TIME    60
+#define NEIGHBOR_EXPIRE_TIME 60
+#define ROUTE_EXPIRE_TIME    120
 
 
 #define SET_TIMEVAL(_tv,_ms) do {      \

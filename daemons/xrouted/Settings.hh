@@ -18,13 +18,13 @@
 
 #include <string>
 
-#define EXPIRE_TIME            60
+#define EXPIRE_TIME            260
 //#define HELLO_INTERVAL         0.1
 //#define LSA_INTERVAL           0.3
 //#define SID_DISCOVERY_INTERVAL 3.0
 //#define SID_DECISION_INTERVAL  5.0
 //#define AD_LSA_INTERVAL        1
-#define CALC_DIJKSTRA_INTERVAL 4
+#define CALC_DIJKSTRA_INTERVAL 10
 #define MAX_HOP_COUNT          50
 #define UPDATE_LATENCY         60
 #define UPDATE_CONFIG          5
