@@ -42,7 +42,7 @@ class NetjoinSession(threading.Thread):
     def __init__(self, hostname, shutdown_event,
             receiver=None,
             is_router=False,
-            auth=None, beacon_id=None, policy=None):
+            auth=None, beacon_id=None, policy=None, iface=None):
         threading.Thread.__init__(self)
 
         self.xianetjoin = ("127.0.0.1", 9882)
@@ -56,6 +56,7 @@ class NetjoinSession(threading.Thread):
         self.auth = auth
         self.beacon_id = beacon_id
         self.policy = policy
+        self.iface = iface
         self.xrouted = NetjoinXrouted()
         self.is_router = is_router
         self.controller_dag = None
@@ -613,6 +614,10 @@ class NetjoinSession(threading.Thread):
             logging.error("Receiver not found. OK during unit test.")
 
         logging.debug("Shutting down session ID: {}".format(self.session_ID))
+        if self.iface is not None and self.beacon_id is not None:
+          logging.debug("Forget beacon for session {}".format(self.session_ID))
+          if self.policy.is_known_beacon_id(self.beacon_id, self.iface):
+            self.policy.remove_known_beacon_id(self.beacon_id, self.iface)
 
 
 # Parse arguments and launch necessary threads

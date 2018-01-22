@@ -69,7 +69,7 @@ class NetjoinReceiver(threading.Thread):
         session = NetjoinSession(self.hostname, self.shutdown,
                 receiver=self,
                 is_router=self.is_router,
-                beacon_id=beacon.get_ID(), policy=self.policy)
+                beacon_id=beacon.get_ID(), policy=self.policy, iface=iface)
         session.daemon = True
         session.start()
         self.client_sessions[session.get_ID()] = session
