@@ -7,7 +7,7 @@ import os
 import sys
 import argparse
 
-srcdir = os.getcwd()[:os.getcwd().rindex('xia-core')+len('xia-core')]
+srcdir = os.path.abspath(__file__).rsplit('/xia-core/',1)[0]+'/xia-core'
 sys.path.append(os.path.join(srcdir, "daemons/xcache/publisher"))
 sys.path.append(os.path.join(srcdir, "bin"))
 

@@ -21,7 +21,7 @@ def getxiaclickhostname():
     return ''.join(char for char in socket.gethostname().split('.')[0] if char.isalnum())
 
 def xia_srcdir():
-    return os.getcwd()[:os.getcwd().rindex('xia-core')+len('xia-core')]
+    return os.path.abspath(__file__).rsplit('/xia-core/',1)[0]+'/xia-core'
 
 def xia_bindir():
     return os.path.join(xia_srcdir(), 'bin')

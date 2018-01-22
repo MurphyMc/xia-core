@@ -6,7 +6,7 @@ import socket
 import hashlib
 import binascii
 
-srcdir = os.getcwd()[:os.getcwd().rindex('xia-core')+len('xia-core')]
+srcdir = os.path.abspath(__file__).rsplit('/xia-core/',1)[0]+'/xia-core'
 sys.path.append(os.path.join(srcdir, "bin"))
 import xiapyutils
 import nodeconf
@@ -21,8 +21,7 @@ from netjoin_message_pb2 import SignedMessage
 class NetjoinXIAConf(object):
     def __init__(self, hostname=xiapyutils.getxiaclickhostname()):
         self.hostname = hostname
-        cwd = os.getcwd()
-        self.src_dir = cwd[:cwd.rindex('xia-core')+len('xia-core')]
+        self.src_dir = srcdir
         self.conf_dir = os.path.join(self.src_dir, "etc")
         self.key_dir = os.path.join(self.src_dir, "key")
         self.resolvconfpattern = re.compile('nameserver=(RE.+)')

@@ -9,7 +9,7 @@ import threading
 import logging.handlers
 
 # Include daemons/xnetjd in path so network joining py modules can be loaded
-srcdir = os.getcwd()[:os.getcwd().rindex('xia-core')+len('xia-core')]
+srcdir = os.path.abspath(__file__).rsplit('/xia-core/',1)[0]+'/xia-core'
 sys.path.append(os.path.join(srcdir, "daemons/xnetjd"))
 
 # Put XIA API in path

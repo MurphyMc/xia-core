@@ -9,7 +9,7 @@ from netjoin_xiaconf import NetjoinXIAConf
 from google.protobuf import text_format as protobuf_text_format
 
 # Include daemons/xnetjd in path no credmgr modules can be loaded
-srcdir = os.getcwd()[:os.getcwd().rindex('xia-core')+len('xia-core')]
+srcdir = os.path.abspath(__file__).rsplit('/xia-core/',1)[0]+'/xia-core'
 sys.path.append(os.path.join(srcdir, 'daemons/xnetjd'))
 
 class CredMgr(object):
