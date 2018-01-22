@@ -173,7 +173,7 @@ def getAradaInterfaces(ignore_interfaces):
 #
 # get list of interfaces on Linux
 #
-def getLinuxInterfaces(ignore_interfaces):
+def getLinuxInterfaces(ignore_interfaces, need_ip=False):
     # Get the MAC and IP addresses
     if ignore_interfaces is not None:
         ignore_interfaces = set(ignore_interfaces.split(","))
@@ -204,8 +204,8 @@ def getLinuxInterfaces(ignore_interfaces):
         mac = get_key(info, "link/ether")
         ip = get_key(info, "inet")
         if iface in ignore_interfaces: continue
-        if iface and mac and ip:
-            ip = ip.split("/")[0]
+        if iface and mac and (ip or not need_ip):
+            if ip: ip = ip.split("/")[0]
             addrs.append([iface, mac, ip])
 
     return addrs
