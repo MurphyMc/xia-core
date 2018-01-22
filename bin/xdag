@@ -14,11 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-getxid() {
-	# $1 contains the XID type to search for
-	XID=`$xdir/xroute -v --type=$1 | grep self | tr -s " " "\t"  | cut -f2`
-}
-
 xdir=`dirname $0`
 
 if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
@@ -33,13 +28,14 @@ options:
 EOH
 	exit 0
 elif [ "$1" == "-v" ] || [ "$1" == "--version" ]; then
-	echo "xdag 1.0"
+	echo "xdag 2.0"
 	exit 0
 fi
 
 # print DAG mappings suitable for inclusion in hosts.xia
-getxid "AD"
-AD=$XID
-getxid "HID"
-HID=$XID
-[ "$HID" != "" -a "$AD" != "" ] && echo "$(hostname -s) RE $AD $HID"
+XIDs=$($xdir/xroute -v | grep "(self)" | grep -e '^\(\(AD\)\|\(HID\)\) ' \
+			| sort | tr -s ' ' '\t' | cut -f 2 | paste -s -d' ')
+if [ "${#XIDs}" != 88 ]; then
+	exit 1
+fi
+echo "$(hostname -s) RE $XIDs"
