@@ -28,11 +28,11 @@ Settings::Settings(const char *h)
     _settings_file = full_path;
 
     _expire_time            = EXPIRE_TIME;
-    _hello_interval         = HELLO_INTERVAL;
-    _lsa_interval           = LSA_INTERVAL;
-    _sid_discovery_interval = SID_DISCOVERY_INTERVAL;
-    _sid_decision_interval  = SID_DECISION_INTERVAL;
-    _ad_lsa_interval        = AD_LSA_INTERVAL;
+//    _hello_interval         = HELLO_INTERVAL;
+//    _lsa_interval           = LSA_INTERVAL;
+//    _sid_discovery_interval = SID_DISCOVERY_INTERVAL;
+//    _sid_decision_interval  = SID_DECISION_INTERVAL;
+//    _ad_lsa_interval        = AD_LSA_INTERVAL;
     _calc_dijkstra_interval = CALC_DIJKSTRA_INTERVAL;
     _update_latency         = UPDATE_LATENCY;
     _update_config          = UPDATE_CONFIG;
@@ -62,11 +62,11 @@ void Settings::reload()
 	}
 
 	_expire_time             = ini_getl(section_name, "expire_time", EXPIRE_TIME, _settings_file.c_str());
-	_hello_interval          = ini_getf(section_name, "hello_interval", HELLO_INTERVAL, _settings_file.c_str());
-	_lsa_interval            = ini_getf(section_name, "LSA_interval", LSA_INTERVAL, _settings_file.c_str());
-	_sid_discovery_interval  = ini_getf(section_name, "SID_discovery_interval", SID_DISCOVERY_INTERVAL, _settings_file.c_str());
-	_sid_decision_interval   = ini_getf(section_name, "SID_decision_interval", SID_DECISION_INTERVAL, _settings_file.c_str());
-	_ad_lsa_interval         = ini_getf(section_name, "AD_LSA_interval", AD_LSA_INTERVAL, _settings_file.c_str());
+//	_hello_interval          = ini_getf(section_name, "hello_interval", HELLO_INTERVAL, _settings_file.c_str());
+//	_lsa_interval            = ini_getf(section_name, "LSA_interval", LSA_INTERVAL, _settings_file.c_str());
+//	_sid_discovery_interval  = ini_getf(section_name, "SID_discovery_interval", SID_DISCOVERY_INTERVAL, _settings_file.c_str());
+//	_sid_decision_interval   = ini_getf(section_name, "SID_decision_interval", SID_DECISION_INTERVAL, _settings_file.c_str());
+//	_ad_lsa_interval         = ini_getf(section_name, "AD_LSA_interval", AD_LSA_INTERVAL, _settings_file.c_str());
 	_calc_dijkstra_interval  = ini_getf(section_name, "calc_Dijkstra_interval", CALC_DIJKSTRA_INTERVAL, _settings_file.c_str());
 	_max_hop_count           = ini_getl(section_name, "max_hop_count", MAX_HOP_COUNT, _settings_file.c_str());
 	_update_config           = ini_getl(section_name, "update_config", UPDATE_CONFIG, _settings_file.c_str());

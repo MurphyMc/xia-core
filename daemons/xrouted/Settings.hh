@@ -19,11 +19,11 @@
 #include <string>
 
 #define EXPIRE_TIME            60
-#define HELLO_INTERVAL         0.1
-#define LSA_INTERVAL           0.3
-#define SID_DISCOVERY_INTERVAL 3.0
-#define SID_DECISION_INTERVAL  5.0
-#define AD_LSA_INTERVAL        1
+//#define HELLO_INTERVAL         0.1
+//#define LSA_INTERVAL           0.3
+//#define SID_DISCOVERY_INTERVAL 3.0
+//#define SID_DECISION_INTERVAL  5.0
+//#define AD_LSA_INTERVAL        1
 #define CALC_DIJKSTRA_INTERVAL 4
 #define MAX_HOP_COUNT          50
 #define UPDATE_LATENCY         60
@@ -38,11 +38,11 @@ public:
     void reload();
 
     int    expire_time()            { return _expire_time; };
-    double hello_interval()         { return _hello_interval; };
-    double lsa_interval()           { return _lsa_interval; };
-    double sid_discovery_interval() { return _sid_discovery_interval; };
-    double sid_decision_interval()  { return _sid_decision_interval; };
-    double ad_lsa_interval()        { return _ad_lsa_interval; };
+//    double hello_interval()         { return _hello_interval; };
+//    double lsa_interval()           { return _lsa_interval; };
+//    double sid_discovery_interval() { return _sid_discovery_interval; };
+//    double sid_decision_interval()  { return _sid_decision_interval; };
+//    double ad_lsa_interval()        { return _ad_lsa_interval; };
     double calc_dijkstra_interval() { return _calc_dijkstra_interval; };
     int    update_latency()         { return _update_latency; };
     int    update_config()          { return _update_config; };
@@ -54,11 +54,11 @@ private:
     std::string _hostname;
 
     int    _expire_time;
-    double _hello_interval;
-    double _lsa_interval;
-    double _sid_discovery_interval;
-    double _sid_decision_interval;
-    double _ad_lsa_interval;
+//    double _hello_interval;
+//    double _lsa_interval;
+//    double _sid_discovery_interval;
+//    double _sid_decision_interval;
+//    double _ad_lsa_interval;
     double _calc_dijkstra_interval;
     int    _update_latency;
     int    _update_config;
