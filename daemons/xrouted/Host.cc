@@ -85,8 +85,7 @@ int Host::init()
 
 	struct timeval now;
 
-	h_freq.tv_sec = 0;
-	h_freq.tv_usec = 100000;
+	SET_TIMEVAL(h_freq, H_FREQ_HOST);
 
 	gettimeofday(&now, NULL);
 	timeradd(&now, &h_freq, &h_fire);

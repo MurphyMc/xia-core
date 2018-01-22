@@ -182,10 +182,8 @@ int Router::init()
 
 	struct timeval now;
 
-	h_freq.tv_sec = 0;
-	h_freq.tv_usec = 100000;
-	l_freq.tv_sec = 0;
-	l_freq.tv_usec = 300000;
+	SET_TIMEVAL(h_freq, H_FREQ_ROUTER);
+	SET_TIMEVAL(l_freq, L_FREQ_ROUTER);
 
 	_last_route_purge = 0;
 	_last_neighbor_purge = 0;

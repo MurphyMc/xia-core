@@ -329,10 +329,8 @@ int Controller::init()
 		_dual_router = false;
 	}
 
-	h_freq.tv_sec = 0;
-	h_freq.tv_usec = 100000;
-	l_freq.tv_sec = 0;
-	l_freq.tv_usec = 300000;
+	SET_TIMEVAL(h_freq, H_FREQ_CONTROLLER);
+	SET_TIMEVAL(l_freq, L_FREQ_CONTROLLER);
 
 	struct timeval now;
 	gettimeofday(&now, NULL);
