@@ -197,6 +197,9 @@ class XARPTable : public Element { public:
 inline int
 XARPTable::lookup(XID xid, EtherAddress *eth, uint32_t poll_timeout_j)
 {
+    static const uint16_t addr[] = {0xf2f2,0xf2f2,0xf2f2};
+    memcpy(eth->data(), addr, 6);
+    return 0;
     _lock.acquire_read();
     int r = -1;
     if (Table::iterator it = _table.find(xid)) {
